@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Ver PQRSI</title>
+</head>
+<body>
+    <h1>Ver PQRSI</h1> <!-- Título principal de la página -->
+    <table> <!-- Inicio de la tabla para mostrar las PQRSSI -->
+        <tr > <!-- Fila de encabezados de la tabla -->
+            <th>ID</th> <!-- Encabezado de columna para ID -->
+            <th>Tipo</th> <!-- Encabezado de columna para Tipo -->
+            <th>Descripción</th> <!-- Encabezado de columna para Descripción -->
+            <th>Estado</th> <!-- Encabezado de columna para Estado -->
+            <th>Fecha</th> <!-- Encabezado de columna para Fecha -->
+            <th>Categoría</th> <!-- Encabezado de columna para Categoría -->
+            <th>Usuario</th> <!-- Encabezado de columna para Usuario -->
+            <th>Historial</th> <!-- Encabezado de columna para Historial -->
+        </tr>
+        <% pqrssi.forEach(p => { %> <!-- Bucle para iterar sobre las PQRSSI -->
+        <tr class="<%= p.estado.toLowerCase().replace(' ', '-') %>"> <!-- Inicio de una fila de la tabla -->
+            <td><%= p.id %></td> <!-- Celda para mostrar el ID -->
+            <td><%= p.tipo %></td> <!-- Celda para mostrar el Tipo -->
+            <td><%= p.descripcion %></td> <!-- Celda para mostrar la Descripción -->
+            <td><%= p.estado %></td> <!-- Celda para mostrar el Estado -->
+            <td><%= p.fecha %></td> <!-- Celda para mostrar la Fecha -->
+            <td><%= p.categoria %></td> <!-- Celda para mostrar la Categoría -->
+            <td><%= p.usuario %></td> <!-- Celda para mostrar el Usuario -->
+            <td><a href="/historial/<%= p.id %>" class="button">Ver Historial</a></td> <!-- Botón para ver el Historial -->
+        </tr>
+        <% }); %> <!-- Fin del bucle -->
+    </table>
+    <a href="/" class="button">Volver a Inicio</a> <!-- Botón para volver a la página de inicio -->
+</body>
+</html>

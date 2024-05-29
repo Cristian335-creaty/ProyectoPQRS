@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>PQRS System</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bienvenido al Sistema PQRS</h1>
+        <% if (nombre) { %>
+            <p>Hola, <%= nombre %>!</p>
+            <a href="/submit" class="button">Enviar una PQRSSI</a>
+            <a href="/view" class="button">Ver PQRSSI</a>
+            <a href="/logout" class="button">Cerrar Sesión</a>
+        <% } else { %>
+            <div class="options">
+                <div class="option-box">
+                    <img src="/images/usuario.png" alt="User Icon">
+                    <h2>Iniciar Sesión</h2>
+                    <a href="/login" class="button">Iniciar Sesión</a>
+                </div>
+                <div class="option-box">
+                    <img src="/images/registrar.png" alt="Register Icon">
+                    <h2>   Registrarse      </h2>
+                    <a href="/register" class="button" id="b.register">Registrarse  </a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
+

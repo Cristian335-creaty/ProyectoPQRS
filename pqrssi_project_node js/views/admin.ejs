@@ -1,0 +1,57 @@
+<!DOCTYPE html> <!-- Declaración del tipo de documento HTML -->
+<html lang="en"> <!-- Inicio del elemento HTML con atributo de idioma en inglés -->
+<head>
+    <meta charset="UTF-8"> <!-- Especificación de la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración de la vista en dispositivos móviles -->
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Enlace al archivo CSS externo -->
+
+    <title>Administrador</title> <!-- Título de la página -->
+</head>
+<body>
+    <h1>Panel de Administración</h1> <!-- Título principal de la página -->
+
+    <!-- Tabla para mostrar la lista de elementos -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Estado Actual</th>
+                <th>Cambiar Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Bucle para generar filas de la tabla -->
+            <% solicitudes.forEach(item => { %> <!-- Inicio del bucle -->
+                <tr class="<%= item.estado_nombre === 'Solucionado' ? 'solucionado' : item.estado_nombre === 'Pendiente' ? 'pendiente' : item.estado_nombre === 'En curso' ? 'en-curso' : '' %>">
+                    <td><%= item.id %></td> <!-- Columna para mostrar el ID del elemento -->
+                    <td><%= item.tipo %></td> <!-- Columna para mostrar el tipo del elemento -->
+                    <td><%= item.descripcion %></td> <!-- Columna para mostrar la descripción del elemento -->
+                    <td><%= item.estado_id %></td> <!-- Columna para mostrar el estado actual del elemento -->
+                    <td>
+                        <!-- Formulario para cambiar el estado del elemento -->
+                        <form action="/admin/change-status" method="post"> <!-- Acción y método del formulario -->
+                            <input type="hidden" name="pqrssi_id" value="<%= item.id %>"> <!-- Campo oculto para enviar el ID del elemento -->
+                            <select name="estado_id"> <!-- Menú desplegable para seleccionar el nuevo estado -->
+                                <option value="1" <%= item.estado_nombre === 'Pendiente' ? 'selected' : '' %>>Pendiente</option>
+                                <option value="2" <%= item.estado_nombre === 'En curso' ? 'selected' : '' %>>En curso</option>
+                                <option value="3" <%= item.estado_nombre === 'Solucionado' ? 'selected' : '' %>>Solucionado</option>
+                            </select>
+                            <br>
+                            <textarea name="comentario" placeholder="Comentario"></textarea> <!-- Campo de texto para agregar un comentario -->
+                            <br>
+                            <button type="submit">Cambiar Estado</button> <!-- Botón para enviar el formulario -->
+                        </form>
+                    </td>
+                </tr>
+            <% }); %> <!-- Fin del bucle -->
+        </tbody>
+    </table>
+
+    <!-- Formulario para cerrar sesión -->
+    <form action="/logout" method="get"> <!-- Acción y método del formulario -->
+        <button class="logout-button" type="submit">Cerrar Sesión</button> <!-- Botón para enviar el formulario -->
+    </form>
+</body>
+</html>

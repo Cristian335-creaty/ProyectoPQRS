@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Recuperar Contraseña</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Recuperar Contraseña</h1>
+        <form method="POST" action="/recover">
+            <label for="cedula">Cédula:</label>
+            <input type="text" name="cedula" id="cedula" required>
+            <br>
+            <label for="newPassword">Nueva Contraseña:</label>
+            <input type="password" name="newPassword" id="newPassword" required>
+            <br>
+            <button type="submit">Recuperar</button>
+        </form>
+        <a href="/login">Volver al Inicio de Sesión</a>
+    </div>    
+</body>
+</html>

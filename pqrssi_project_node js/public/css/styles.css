@@ -1,0 +1,256 @@
+/* Reset de Estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button[type="button"] {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #626262;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #b8bfc7;
+} 
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/images/fondo4.png'); 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    padding: 60px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para mejor legibilidad */
+    border-radius: 10px;
+}
+
+.container1 {
+    text-align: center;
+    padding: 60px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para mejor legibilidad */
+    border-radius: 10px;
+}
+
+h1 {
+    text-shadow: 2px 2px 5px rgb(49, 49, 49);
+}
+
+p {
+    font-size: 1.2em; /* Tamaño del texto */
+    margin-bottom: 20px;
+    
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.option-box {
+    background: rgba(42, 42, 42, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    width: calc(50% - 40px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    margin: 20px;
+}
+
+.option-box img {
+    width: 100px; /* Ajuste del tamaño de la imagen */
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.option-box h2 {
+    margin-bottom: 20px;
+}
+
+.option-box .button {
+    display: inline-block;
+    background-color: #8a8b8d;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.option-box .button:hover {
+    background-color: #61676d;
+}
+
+/* Estilos para los enlaces y botones */
+a.button {
+    text-decoration: none;
+    color: #fbf9fc;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #7e7e7e;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+a.button:hover {
+    background-color: #aaa8ac;
+}
+
+button, .button {
+    display: inline-block;
+    background: #31ab23;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 4px rgba(110, 189, 117, 0.615);
+    margin-right: 10px;
+}
+
+button:last-child, .button:last-child {
+    margin-right: 50px; 
+    margin-bottom: 10px;
+    
+}
+
+
+button:hover, .button:hover {
+    background: #30eba3;
+}
+
+/* Formularios */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #292b2a;
+    color: #fffbfb;
+}
+
+td {
+    color: #111111;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #d1cbcb;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Tarjetas */
+.card {
+    background: #1a1919;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(218, 0, 0, 0.852);
+    margin-bottom: 20px;
+}
+
+/* Mensajes de Error */
+.error-msg {
+    background: #8b0000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensajes de Éxito */
+.success-msg {
+    background: #556b2f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Pie de Página */
+footer {
+    background: #111111;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos adicionales para clases de estado */
+.pendiente {
+    background-color: #f2f2f2;
+}
+
+.en-curso {
+    background-color: #e6f7ff;
+}
+
+.solucionado {
+    background-color: #e8f5e9;
+}
+
+/* Efectos de hover */
+.pendiente:hover {
+    background-color: #d9d9d9;
+}
+
+.en-curso:hover {
+    background-color: #b3e0ff;
+}
+
+.solucionado:hover {
+    background-color: #c8e6c9;
+}

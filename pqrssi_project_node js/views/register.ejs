@@ -1,0 +1,31 @@
+<!DOCTYPE html> <!-- Declaración del tipo de documento HTML -->
+<html lang="en"> <!-- Inicio del elemento HTML con atributo de idioma en inglés -->
+<head>
+    <meta charset="UTF-8"> <!-- Especificación de la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración de la vista en dispositivos móviles -->
+    <link rel="stylesheet" href="/css/register.css"> <!-- Enlace al archivo CSS externo -->
+    <title>Registro</title> <!-- Título de la página -->
+</head>
+<body>
+    <div class="container">
+        <h1>Registro</h1> <!-- Título principal de la página -->
+        <form method="POST" action="/register"> <!-- Formulario para el registro -->
+            <label for="nombre">Nombre:</label> <!-- Etiqueta para el campo de nombre -->
+            <input type="text" name="nombre" id="nombre" required> <!-- Campo de entrada para el nombre -->
+            <br>
+            <label for="email">Email:</label> <!-- Etiqueta para el campo de email -->
+            <input type="email" name="email" id="email" required> <!-- Campo de entrada para el email -->
+            <br>
+            <label for="cedula">Número de Cédula:</label>
+            <input type="text" name="cedula" id="cedula" required>
+            <br>
+            <label for="contraseña">Contraseña:</label> <!-- Etiqueta para el campo de contraseña -->
+            <input type="password" name="contraseña" id="contraseña" required> <!-- Campo de entrada para la contraseña -->
+            <br>
+            <button type="submit">Registrarse</button> <!-- Botón para enviar el formulario de registro -->
+        </form>
+        <a href="/login">¿Ya tienes una cuenta? Inicia sesión aquí</a> <!-- Enlace para dirigir al usuario a la página de inicio de sesión -->
+        
+    </div>    
+</body>
+</html>

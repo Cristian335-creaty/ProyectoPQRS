@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Declaración del tipo de documento HTML -->
+<html lang="en"> <!-- Inicio del elemento HTML con atributo de idioma en inglés -->
+<head>
+    <meta charset="UTF-8"> <!-- Especificación de la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración de la vista en dispositivos móviles -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Enlace al archivo CSS externo -->
+    <title>Enviar PQRS</title> <!-- Título de la página -->
+</head>
+<body>
+    <div class="container1">
+    <h1>Enviar una PQRS</h1> <!-- Título principal de la página -->
+    <form method="POST" action="/submit"> <!-- Formulario para enviar una PQRS -->
+        <label for="tipo">Tipo:</label> <!-- Etiqueta para el campo de tipo -->
+        <select name="tipo" id="tipo"> <!-- Menú desplegable para seleccionar el tipo -->
+            <option value="Petición">Petición</option> <!-- Opción de tipo Petición -->
+            <option value="Queja">Queja</option> <!-- Opción de tipo Queja -->
+            <option value="Reclamo">Reclamo</option> <!-- Opción de tipo Reclamo -->
+            <option value="Sugerencia">Sugerencia</option> <!-- Opción de tipo Sugerencia -->
+            <option value="Solicitud">Solicitud</option> <!-- Opción de tipo Solicitud -->
+            <option value="Informe">Informe</option> <!-- Opción de tipo Informe -->
+        </select>
+        <br>
+        <label for="categoria_id">Categoría:</label> <!-- Etiqueta para el campo de categoría -->
+        <select name="categoria_id" id="categoria_id"> <!-- Menú desplegable para seleccionar la categoría -->
+
+
+        <% categorias.forEach(categoria => { %>
+         <!--Bucle para generar opciones de categoría -->
+            <option value="<%= categoria.id %>" <% if (categoria.id !== null) { %> selected <% } %>><%= categoria.nombre %></option>
+        <% }); %>
+         Fin del bucle -->
+        
+        </select>
+        <br>
+        <label for="descripcion">Descripción:</label> <!-- Etiqueta para el campo de descripción -->
+        <textarea name="descripcion" id="descripcion" required></textarea> <!-- Campo de texto para la descripción -->
+        <br>
+        <button type="submit">Enviar</button> <!-- Botón para enviar el formulario -->
+        <button type="button" onclick="window.location.href='/'">Volver a Inicio</button> <!-- Botón para volver a la página de inicio -->
+
+    </form>
+</div>
+</body>
+</html>

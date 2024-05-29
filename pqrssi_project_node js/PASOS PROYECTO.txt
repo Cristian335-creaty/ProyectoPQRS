@@ -1,0 +1,195 @@
+Pasos para la creación de la base de datos: -----------------------------------------------------------------------------
+
+database: system_pqrs1
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    cedula VARCHAR(20) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    is_admin TINYINT(1) DEFAULT 0
+);
+
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE estados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE pqrssi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(255) NOT NULL,
+    descripcion TEXT NOT NULL,
+    estado_id INT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario_id INT,
+    categoria_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+    FOREIGN KEY (estado_id) REFERENCES estados(id)
+);
+
+CREATE TABLE historial (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pqrssi_id INT,
+    estado_id INT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    comentario TEXT,
+    FOREIGN KEY (pqrssi_id) REFERENCES pqrssi(id),
+    FOREIGN KEY (estado_id) REFERENCES estados(id)
+);
+____________________________________________________________________________________________________
+
+Relaciones entre las Tablas 
+usuarios tiene una relación uno a muchos con pqrssi (un usuario puede enviar múltiples solicitudes)
+categorias tiene una relación uno a muchos con pqrssi (una categoría puede tener múltiples solicitudes)
+estados tiene una relación uno a muchos con pqrssi e historial (un estado puede aplicarse a múltiples solicitudes y a múltiples cambios de estado)
+pqrssi tiene una relación uno a muchos con historial (una solicitud puede tener múltiples registros de historial de cambios de estado)
+
+
+Ejemplo de Relaciones y Consultas --------------------------------------------------------------------------------------------------------------
+
+Ejemplo de Uso:
+
+-- Insertar usuarios
+INSERT INTO usuarios (nombre, email, cedula, contraseña) VALUES ('Juan Pérez', 'juan@usta.com', '1234567890', '1234');
+
+-- Insertar categorías
+INSERT INTO categorias (nombre) VALUES ('Alta Urgencia');
+INSERT INTO categorias (nombre) VALUES ('Urgente');
+INSERT INTO categorias (nombre) VALUES ('Normal');
+INSERT INTO categorias (nombre) VALUES ('Sin Urgencia');
+
+-- Insertar estados
+INSERT INTO estados (nombre) VALUES ('Pendiente');
+INSERT INTO estados (nombre) VALUES ('En curso');
+INSERT INTO estados (nombre) VALUES ('Solucionado');
+
+-- Insertar una solicitud PQRSSI
+INSERT INTO pqrssi (tipo, descripcion, estado_id, usuario_id, categoria_id) VALUES ('Queja', 'Descripción de la queja', 1, 1, 1);
+
+-- Insertar un registro de historial
+INSERT INTO historial (pqrssi_id, estado_id, comentario) VALUES (1, 1, 'Se ha recibido la queja y está pendiente de revisión.');
+
+
+Consulta de Datos
+Obtener todas las solicitudes de un usuario:
+SELECT * FROM pqrssi WHERE usuario_id = 1;
+
+Ver el historial de cambios de estado de una solicitud:
+SELECT h.*, e.nombre AS estado
+FROM historial h
+JOIN estados e ON h.estado_id = e.id
+WHERE h.pqrssi_id = 1;
+
+______________________________________________________________________________________________________________________________
+Pasos para la creación del proyecto:
+
+Directorio del proyecto:
+
+project/
+│
+├── app.js
+├── config.js
+├── create_admin.js
+├── package.json
+│
+├── views/
+│   ├── admin.ejs
+│   ├── historial.ejs
+│   ├── index.ejs
+│   ├── login.ejs
+│   ├── recover.ejs
+│   ├── register.ejs 
+│   ├── submit.ejs
+│   ├── view.ejs 
+│
+└── public/
+    └── css/
+        └── admin.css
+	    └── login.css
+	    └── register.css
+	    └── styles.css
+        └── submit.css
+
+
+
+
+Instalación de dependencias, ejecutar en la terminal de vscode:
+npm install
+
+****** Si no se ha creado el archivo package.json, instalar:
+npm install express mysql path body-parser express-session bcrypt ejs
+
+****** Esto instalará los siguientes paquetes:
+
+express: 	 Framework para aplicaciones web.
+mysql:   	 Conector de Node.js para MySQL.
+path:    	 Módulo de Node.js para manejar y transformar rutas de archivos.
+body-parser:     Middleware para analizar cuerpos de solicitudes entrantes.
+express-session: Middleware para manejar sesiones.
+bcrypt:          Biblioteca para encriptación, usada para gestionar contraseñas.
+ejs:             Motor de plantillas para generar vistas HTML.
+
+
+
+
+Ejecución del proyecto (Ejecutar la aplicación):
+OP1: npm start
+
+OP2: node app.js
+
+url del proyecto:
+http://localhost:3000/
+______________________________________________________________________________________________________________________________
+PARA LA CREACIÓN DEL USUARIO ADMINISTRADOR:
+
+***** Agregar el archivo al proyecto:
+create_admin.js
+
+const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+const config = require('./config'); // Asegúrate de tener un archivo config.js para las credenciales de la base de datos
+
+const db = mysql.createConnection(config);
+
+db.connect(err => {
+    if (err) {
+        console.error('Error connecting to the database:', err.stack);
+        return;
+    }
+    console.log('Connected to the database');
+
+    const nombre = 'Admin';
+    const email = 'admin@tuapp.com';
+    const contraseña = 'adminpassword'; // Cambia esta contraseña por una segura
+
+    bcrypt.hash(contraseña, 10, (err, hashedPassword) => {
+        if (err) {
+            console.error('Error hashing the password:', err);
+            return;
+        }
+
+        const query = 'INSERT INTO usuarios (nombre, email, contraseña, is_admin) VALUES (?, ?, ?, ?)';
+        const values = [nombre, email, hashedPassword, true];
+
+        db.query(query, values, (err, result) => {
+            if (err) {
+                console.error('Error inserting the admin user:', err);
+                return;
+            }
+            console.log('Admin user created successfully');
+            db.end();
+        });
+    });
+});
+
+
+
+***** Ejecuta el script desde la línea de comandos en la terminal de vscode:
+node create_admin.js

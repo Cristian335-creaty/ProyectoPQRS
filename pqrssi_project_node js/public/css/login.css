@@ -1,0 +1,76 @@
+/* Establece la fuente principal para todo el cuerpo del documento */
+body {
+    background-image: url('/images/fondo4.png');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Color de fondo */
+    margin: 50px ; /* Quita el margen exterior del cuerpo */
+    padding: 0; /* Quita el relleno del cuerpo */
+}
+.container {
+    padding: 40px; /* Reducción del padding para hacer el contenedor más delgado */
+    background: rgba(67, 66, 66, 0.6); /* Fondo semitransparente para mejor legibilidad */
+    border-radius: 15px;
+    max-width: 600px; /* Establece un ancho máximo para el contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+/* Estilos para los encabezados de nivel 1 */
+h1 {
+    text-align: center;
+    text-shadow: 2px 2px 5px rgb(187, 182, 182);
+}
+
+/* Estilos para los formularios */
+form {
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    background-color: #fff; /* Color de fondo del formulario */
+    padding: 20px; /* Relleno interior del formulario */
+    border-radius: 8px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para las etiquetas */
+label {
+    display: block; /* Muestra las etiquetas como bloques */
+    margin-bottom: 8px; /* Margen inferior */
+    color: #252323; /* Color del texto */
+}
+
+/* Estilos para los campos de texto, email y contraseña */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 22px); /* Ancho del campo considerando el padding y el borde */
+    padding: 10px; /* Relleno interior */
+    margin-bottom: 20px; /* Margen inferior */
+    border: 1px solid #ccc; /* Borde del campo */
+    border-radius: 4px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+/* Estilos para el botón de envío */
+button[type="submit"] {
+    background-color: #5c5c5d; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Borde redondeado */
+    padding: 12px 20px; /* Relleno interior */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    display: block; /* Muestra el botón como bloque */
+    margin: 0 auto; /* Centra el botón horizontalmente */
+}
+
+/* Cambia el color de fondo del botón de envío al pasar el cursor sobre él */
+button[type="submit"]:hover {
+    background-color: #919092;
+}
+
+/* Estilos para los enlaces */
+a {
+    display: block; /* Muestra los enlaces como bloques */
+    text-align: center; /* Centra el texto */
+    margin-top: 20px; /* Margen superior */
+    color: #b4cfea; /* Color del texto */
+    text-decoration: none; /* Quita el subrayado */
+}
